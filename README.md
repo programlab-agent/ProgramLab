@@ -10,6 +10,20 @@
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT-2458a8"></a>
 </p>
 
+## Contents
+
+- [News](#news)
+- [What's inside](#whats-inside)
+- [Results](#results)
+- [Quickstart](#quickstart)
+  - [Try a task](#try-a-task)
+  - [Evaluate a run](#evaluate-a-run)
+  - [Pick tasks for training](#pick-tasks-for-training)
+  - [Rebuild the images](#rebuild-the-images)
+- [Citation](#citation)
+- [License](#license)
+- [Acknowledgements](#acknowledgements)
+
 ## News
 
 - **2026-10**: ProgramLab is out, with 1,261 environments, their hidden tests, and prebuilt cleanroom images. Read the [blog](https://programlab.blog/).
