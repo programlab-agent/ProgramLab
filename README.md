@@ -117,4 +117,4 @@ The code in this repository is released under the [MIT License](LICENSE). Each t
 
 ## Acknowledgements
 
-Tasks follow the [ProgramBench](https://programbench.com) format and are scored with its evaluator.
+We thank the authors of [ProgramBench](https://programbench.com) for their work. ProgramLab tasks follow the ProgramBench format and are scored with its evaluator.
