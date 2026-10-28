@@ -117,4 +117,4 @@ The code in this repository is released under the [MIT License](LICENSE). Each t
 
 ## Acknowledgements
 
-ProgramLab is built upon [ProgramBench](https://github.com/facebookresearch/ProgramBench). We thank its authors for their work.
+ProgramLab is built upon [ProgramBench](https://github.com/facebookresearch/ProgramBench). We thank its authors for their great work.
