@@ -7,7 +7,6 @@
 <p align="center">
   <a href="https://programlab.blog/"><img alt="Blog" src="https://img.shields.io/badge/Blog-programlab.blog-111111"></a>
   <a href="https://huggingface.co/datasets/Program-Lab/ProgramLab"><img alt="Dataset" src="https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-ProgramLab-ffcc4d"></a>
-  <a href="https://huggingface.co/datasets/Program-Lab/ProgramLab-Tests"><img alt="Tests" src="https://img.shields.io/badge/%F0%9F%A4%97%20Tests-ProgramLab--Tests-ffcc4d"></a>
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT-2458a8"></a>
 </p>
 
