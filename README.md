@@ -29,8 +29,6 @@ In each task the agent can run the reference program but not read it, and it can
 | [jless](https://github.com/PaulJuliusMartinez/jless) | Command-line viewer for exploring JSON | Medium · Rust · ~11K lines | 106 |
 | [caddy](https://github.com/caddyserver/caddy) | Web server with automatic HTTPS | Hard · Go · ~99K lines | 262 |
 
-<p align="center"><img src="assets/overview.png" alt="How ProgramLab tasks are built and used for RL" width="100%"></p>
-
 ## Results
 
 With Qwen3.6-35B-A3B, RL on ProgramLab raises the ProgramBench pass rate:
