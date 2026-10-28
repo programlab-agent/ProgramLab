@@ -27,7 +27,7 @@
 ## News
 
 - **2026-10**: ProgramLab is out, with 1,261 environments, their hidden tests, and prebuilt cleanroom images. Read the [blog](https://programlab.blog/).
-- **Coming Nov. 10–17**: RL-Bridge, the infrastructure we train with.
+- ⏳ **Nov. 10–17**: RL-Bridge, the infrastructure we train with.
 
 ## What's inside
 
