@@ -1,13 +1,49 @@
-# ProgramLab
+<p align="center">
+  <img src="assets/logo.svg" alt="ProgramLab" height="64">
+</p>
 
-Training environments for agents that rebuild real programs. Each of the 1,261 tasks gives the agent a
-compiled program it can run but not read, plus its documentation, and asks it to write the whole program
-again. Hidden behavioral tests score the result. Tasks use the [ProgramBench](https://programbench.com)
-format, so the official evaluator scores them unchanged.
+<p align="center"><b>Train single and multi agents to rebuild programs with RL</b></p>
 
-[Blog](https://programlab.blog/) · [Dataset](https://huggingface.co/datasets/Program-Lab/ProgramLab) · [Tests](https://huggingface.co/datasets/Program-Lab/ProgramLab-Tests)
+<p align="center">
+  <a href="https://programlab.blog/"><img alt="Blog" src="https://img.shields.io/badge/Blog-programlab.blog-111111"></a>
+  <a href="https://huggingface.co/datasets/Program-Lab/ProgramLab"><img alt="Dataset" src="https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-ProgramLab-ffcc4d"></a>
+  <a href="https://huggingface.co/datasets/Program-Lab/ProgramLab-Tests"><img alt="Tests" src="https://img.shields.io/badge/%F0%9F%A4%97%20Tests-ProgramLab--Tests-ffcc4d"></a>
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT-2458a8"></a>
+</p>
 
-## Try a task
+## News
+
+- **2026-10**: ProgramLab is out, with 1,261 environments, their hidden tests, and prebuilt cleanroom images. Read the [blog](https://programlab.blog/).
+- **Coming Nov. 10–17**: RL-Bridge, the infrastructure we train with.
+
+## What's inside
+
+| Tasks | Languages | Difficulty | Hidden tests | Code coverage |
+|:---:|:---:|:---:|:---:|:---:|
+| **1,261** | 566 Go · 415 Rust · 280 C/C++ | 205 easy · 888 medium · 168 hard | **187,073** (median 127 per task) | median **76.6%** |
+
+In each task the agent can run the reference program but not read it, and it can read the program's documentation. It writes the program again in any language, plus a `compile.sh` that builds it. Hidden tests then compare its program with the reference. Three examples:
+
+| Task | What it does | Size | Hidden tests |
+|---|---|---|---|
+| [mkcert](https://github.com/FiloSottile/mkcert) | Makes locally trusted HTTPS certificates | Easy · Go · ~1.4K lines | 121 |
+| [jless](https://github.com/PaulJuliusMartinez/jless) | Command-line viewer for exploring JSON | Medium · Rust · ~11K lines | 106 |
+| [caddy](https://github.com/caddyserver/caddy) | Web server with automatic HTTPS | Hard · Go · ~99K lines | 262 |
+
+<p align="center"><img src="assets/overview.png" alt="How ProgramLab tasks are built and used for RL" width="100%"></p>
+
+## Results
+
+With Qwen3.6-35B-A3B, RL on ProgramLab raises the ProgramBench pass rate:
+
+- **Single agent**: 13.7% → 24.0% in Claude Code, with a two-hour budget.
+- **Five-agent team**: 17.2% → 25.0% in [Agensh](https://agens-harness.github.io/project/), with a 30-minute budget.
+
+<p align="center"><img src="assets/main_result.png" alt="ProgramBench pass rate before and after RL in four harnesses" width="85%"></p>
+
+## Quickstart
+
+### Try a task
 
 Every task is a public image. This drops you into the cleanroom of `mkcert`, offline:
 
@@ -16,9 +52,8 @@ docker run -it --rm --network none --user 1000:1000 ghcr.io/programlab-agent/pro
 ```
 
 Inside, `/workspace/executable` is the reference program (execute-only) and `/workspace` holds its documentation.
-The agent's job is to write a program plus a `compile.sh` that builds it.
 
-## Evaluate a run
+### Evaluate a run
 
 ```bash
 pip install programbench==1.2.4
@@ -29,9 +64,7 @@ export PROGRAMBENCH_HF_REPO=Program-Lab/ProgramLab-Tests
 programbench eval my-run
 ```
 
-`setup.sh` installs the task definitions into ProgramBench and pulls the images you selected.
-A run directory holds one `submission.tar.gz` per task, as in
-[ProgramBench](https://github.com/facebookresearch/ProgramBench/blob/main/docs/README.md):
+`setup.sh` installs the task definitions into ProgramBench and pulls the images you selected. A run directory holds one `submission.tar.gz` per task:
 
 ```
 my-run/
@@ -39,13 +72,11 @@ my-run/
 └── pauljuliusmartinez__jless.21dd610/submission.tar.gz
 ```
 
-Tests are downloaded on demand for the tasks you score. `PROGRAMBENCH_DOCKER_ORG` is global, so a shell set up
-for ProgramLab does not also score upstream ProgramBench tasks.
+`PROGRAMBENCH_DOCKER_ORG` is global, so a shell set up for ProgramLab does not also score upstream ProgramBench tasks.
 
-## Pick tasks for training
+### Pick tasks for training
 
-[`instances.jsonl`](https://huggingface.co/datasets/Program-Lab/ProgramLab/blob/main/instances.jsonl) has one row per
-task with its language, difficulty, size, test count, coverage, and image:
+[`instances.jsonl`](https://huggingface.co/datasets/Program-Lab/ProgramLab/blob/main/instances.jsonl) has one row per task with its language, difficulty, size, test count, coverage, license, and image:
 
 ```python
 import json
@@ -53,10 +84,9 @@ tasks = [json.loads(line) for line in open("instances.jsonl")]
 easy_rust = [t["instance_id"] for t in tasks if t["difficulty"] == "easy" and t["language"] == "rs"]
 ```
 
-## Rebuild the images
+### Rebuild the images
 
-The Docker build context of every task and the base image are in `build/` of the dataset, if you would
-rather not pull from GHCR.
+The Docker build context of every task and the base image are in `build/` of the dataset, if you would rather not pull from GHCR.
 
 ## Citation
 
@@ -69,3 +99,11 @@ rather not pull from GHCR.
   year={2026}
 }
 ```
+
+## License
+
+The code in this repository is released under the [MIT License](LICENSE). Each task ships a program from a public repository under that program's own license, given in the `license` field of `instances.jsonl`.
+
+## Acknowledgements
+
+Tasks follow the [ProgramBench](https://programbench.com) format and are scored with its evaluator.
