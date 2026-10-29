@@ -103,7 +103,7 @@ The Docker build context of every task and the base image are in `build/` of the
 
 ```bibtex
 @misc{programlab2026,
-  title={ProgramLab: Train single and multi agents to rebuild programs},
+  title={ProgramLab: Train single and multi agents to rebuild programs with RL},
   author={Yao Tang and Daixuan Cheng and Li Dong and Zhihao Zhan and Shaohan Huang and Jiatao Gu and Furu Wei},
   howpublished={Blog Post},
   url={https://programlab.blog/},
