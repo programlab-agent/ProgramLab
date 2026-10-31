@@ -33,7 +33,7 @@
 
 | Tasks | Languages | Difficulty | Hidden tests | Code coverage |
 |:---:|:---:|:---:|:---:|:---:|
-| **1,261** | 566 Go · 415 Rust · 280 C/C++ | 205 easy · 888 medium · 168 hard | **187,073** (median 127 per task) | median **76.6%** |
+| **1,261** | 566 Go · 415 Rust · 280 C/C++ | 205 easy · 888 medium · 168 hard | **187,070** (median 127 per task) | median **76.6%** |
 
 In each task the agent can run the reference program but not read it, and it can read the program's documentation. It writes the program again in any language, plus a `compile.sh` that builds it. Hidden tests then compare its program with the reference. Three examples:
 
@@ -97,7 +97,7 @@ easy_rust = [t["instance_id"] for t in tasks if t["difficulty"] == "easy" and t[
 
 ### Rebuild the images
 
-The Docker build context of every task and the base image are in `build/` of the dataset, if you would rather not pull from GHCR.
+The Docker build contexts and the base image are in `build/` of the dataset, if you would rather not pull from GHCR. Two tasks, legba and chisel, have no context because antivirus scanners flag them as hacking tools.
 
 ## Citation
 
